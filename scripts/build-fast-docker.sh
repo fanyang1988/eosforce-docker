@@ -5,7 +5,7 @@ DEFAULT_EOSFORCE_ROOT="$HOME/Projects/eosforce/eosforce"
 HTTP_PROXY=""
 
 EOSFORCE_ROOT=${EOSFORCE_ROOT}
-if [[ "$EOSFORCE_ROOT" != "" ]]; then
+if [ "$EOSFORCE_ROOT" != "" ]; then
    printf "EOSForce root path : %s\\n" $EOSFORCE_ROOT
 else
    printf "No Found EOSFORCE_ROOT use default"
