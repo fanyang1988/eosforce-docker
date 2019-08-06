@@ -20,7 +20,7 @@ printf "CONTRACT PATH: %s\\n" $GENESIS_CONTRACT_PATH
 
 # make eosforce path files
 
-DOCKER_ROOT="../eosforce"
+DOCKER_ROOT="../eosforce-fast"
 
 mkdir -p "$DOCKER_ROOT/genesis-contracts"
 cp -r $GENESIS_CONTRACT_PATH/* $DOCKER_ROOT/genesis-contracts/
@@ -30,7 +30,6 @@ cp -r $GENESIS_DATAS_PATH/* $DOCKER_ROOT/genesis-datas/
 
 cp -r ../scripts/nodeosd.sh $DOCKER_ROOT/
 cp -r ../config/config.ini $DOCKER_ROOT/
-
 
 mkdir -p "$DOCKER_ROOT/bin"
 cp -r $BIN_PATH/* $DOCKER_ROOT/bin/
