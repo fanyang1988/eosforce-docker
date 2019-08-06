@@ -1,5 +1,7 @@
 #!/bin/sh
+IMAGE_NAME="eosforce/eos17"
 DEFAULT_EOSFORCE_ROOT="$HOME/Projects/eosforce/eosforce"
+HTTP_PROXY=""
 
 EOSFORCE_ROOT=${EOSFORCE_ROOT}
 if [[ $EOSFORCE_ROOT != "" ]]; then
@@ -34,3 +36,4 @@ cp -r ../config/config.ini $DOCKER_ROOT/
 mkdir -p "$DOCKER_ROOT/bin"
 cp -r $BIN_PATH/* $DOCKER_ROOT/bin/
 
+docker build $DOCKER_ROOT --build-arg https_proxy=$HTTP_PROXY --build-arg http_proxy=$HTTP_PROXY -t $IMAGE_NAME
