@@ -41,4 +41,10 @@ else
     CONFIG_DIR=""
 fi
 
+prog_exit()
+{
+    ps -ef | grep nodeos | grep -v grep | awk '{print $2}' | xargs kill -15
+}
+trap "prog_exit" 15
+
 exec /opt/eosio/bin/nodeos $CONFIG_DIR $@
