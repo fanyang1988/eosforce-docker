@@ -1,8 +1,10 @@
 #!/bin/sh
 cd /opt/eosio/bin
 
-DEFAULT_CONFIG_DIR="/eosforce/config/"
-DEFAULT_DATA_DIR="/eosforce/data/"
+DEFAULT_ROOT_PATH="/eosforce"
+
+DEFAULT_CONFIG_DIR="$DEFAULT_ROOT_PATH/config/"
+DEFAULT_DATA_DIR="$DEFAULT_ROOT_PATH/data/"
 
 while :; do
     case $1 in
@@ -27,7 +29,7 @@ cp /activeacc.json $CONFIG_DIR/
 cp /contracts/*.wasm $CONFIG_DIR/
 cp /contracts/*.abi $CONFIG_DIR/
 
-if [ -f '$CONFIG_DIR/config.ini' ]; then
+if [ -f "$CONFIG_DIR/config.ini" ]; then
     echo
   else
     cp /config.ini $CONFIG_DIR/
