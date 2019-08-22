@@ -1,6 +1,6 @@
 #!/bin/sh
 VERSION_STR="1.7.0"
-IMAGE_NAME="eosforce/eos:$VERSION_STR"
+IMAGE_NAME="eosforce/node:$VERSION_STR"
 DEFAULT_EOSFORCE_ROOT="$HOME/Projects/eosforce/eosforce"
 HTTP_PROXY=""
 
