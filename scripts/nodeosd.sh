@@ -1,28 +1,8 @@
 #!/bin/sh
 cd /opt/eosio/bin
 
-cp /genesis.json /opt/eosio/bin/data-dir
-cp /activeacc.json /opt/eosio/bin/data-dir
-
-cp /contracts/System.wasm /opt/eosio/bin/data-dir
-cp /contracts/System.abi /opt/eosio/bin/data-dir
-cp /contracts/System01.wasm /opt/eosio/bin/data-dir
-cp /contracts/System01.abi /opt/eosio/bin/data-dir
-cp /contracts/System02.wasm /opt/eosio/bin/data-dir
-cp /contracts/System02.abi /opt/eosio/bin/data-dir
-cp /contracts/eosio.token.wasm /opt/eosio/bin/data-dir
-cp /contracts/eosio.token.abi /opt/eosio/bin/data-dir
-cp /contracts/eosio.msig.wasm /opt/eosio/bin/data-dir
-cp /contracts/eosio.msig.abi /opt/eosio/bin/data-dir
-cp /contracts/eosio.lock.wasm /opt/eosio/bin/data-dir
-cp /contracts/eosio.lock.abi /opt/eosio/bin/data-dir
-
-if [ -f '/opt/eosio/bin/data-dir/config.ini' ]; then
-    echo
-  else
-    cp /config.ini /opt/eosio/bin/data-dir
-fi
-
+DEFAULT_CONFIG_DIR="/eosforce/config/"
+DEFAULT_DATA_DIR="/eosforce/data/"
 
 while :; do
     case $1 in
@@ -36,10 +16,23 @@ while :; do
 done
 
 if [ ! "$CONFIG_DIR" ]; then
-    CONFIG_DIR="--config-dir=/opt/eosio/bin/data-dir"
-else
-    CONFIG_DIR=""
+    CONFIG_DIR=$DEFAULT_CONFIG_DIR
 fi
+
+CONFIG_DIR_PARAMS="--config-dir=$CONFIG_DIR"
+
+cp /genesis.json $CONFIG_DIR/
+cp /activeacc.json $CONFIG_DIR/
+
+cp /contracts/*.wasm $CONFIG_DIR/
+cp /contracts/*.abi $CONFIG_DIR/
+
+if [ -f '$CONFIG_DIR/config.ini' ]; then
+    echo
+  else
+    cp /config.ini $CONFIG_DIR/
+fi
+
 
 prog_exit()
 {
@@ -47,4 +40,4 @@ prog_exit()
 }
 trap "prog_exit" 15
 
-exec /opt/eosio/bin/nodeos $CONFIG_DIR $@
+exec /opt/eosio/bin/nodeos $CONFIG_DIR_PARAMS --data-dir $DEFAULT_DATA_DIR $@
