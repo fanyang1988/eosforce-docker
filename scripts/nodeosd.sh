@@ -23,6 +23,9 @@ fi
 
 CONFIG_DIR_PARAMS="--config-dir=$CONFIG_DIR"
 
+mkdir -p $CONFIG_DIR
+mkdir -p $DEFAULT_DATA_DIR
+
 cp /genesis.json $CONFIG_DIR/
 cp /activeacc.json $CONFIG_DIR/
 
